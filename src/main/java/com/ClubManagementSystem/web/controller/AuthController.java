@@ -3,6 +3,10 @@ package com.ClubManagementSystem.web.controller;
 import com.ClubManagementSystem.web.dto.RegistrationDto;
 import com.ClubManagementSystem.web.models.UserEntity;
 import com.ClubManagementSystem.web.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,7 +19,11 @@ import javax.validation.Valid;
 @Controller
 public class AuthController {
     private UserService userService;
+    @Autowired
+    JavaMailSender javaMailSender;
 
+    @Value("${spring.mail.username}")
+    String sender;
     public AuthController(UserService userService) {
         this.userService = userService;
     }
@@ -45,9 +53,19 @@ public class AuthController {
         }
         if(result.hasErrors()) {
             model.addAttribute("user", user);
+
             return "register";
         }
         userService.saveUser(user);
+        SimpleMailMessage mailMessage
+                = new SimpleMailMessage();
+
+        mailMessage.setFrom(sender);
+        mailMessage.setTo(user.getEmail());
+        mailMessage.setText("Thank you for signup, welcome to our system " + user.getUsername() + "😉");
+        mailMessage.setSubject("Thank you Signup *.*");
+
+        javaMailSender.send(mailMessage);
         return "redirect:/clubs?success";
     }
 }

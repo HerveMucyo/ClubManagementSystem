@@ -7,6 +7,9 @@ import com.ClubManagementSystem.web.security.SecurityUtil;
 import com.ClubManagementSystem.web.service.ClubService;
 import com.ClubManagementSystem.web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,6 +23,11 @@ public class ClubController {
     private ClubService clubService;
     private UserService userService;
 
+    @Autowired
+    JavaMailSender javaMailSender;
+
+    @Value("${spring.mail.username}")
+    String sender;
     @Autowired
     public ClubController(ClubService clubService, UserService userService) {
         this.userService = userService;
@@ -81,8 +89,23 @@ public class ClubController {
             return "clubs-create";
         }
         clubService.saveClub(clubDto);
+
+        String username = SecurityUtil.getSessionUser();
+        if(username != null) {
+            UserEntity user = userService.findByUsername(username);
+
+            SimpleMailMessage mailMessage = new SimpleMailMessage();
+            mailMessage.setFrom(sender); // Set your email here
+            mailMessage.setTo(user.getEmail());
+            mailMessage.setText("Hello " + user.getUsername() + ",\n\nThank you for creating a club!\n\nBest regards,\nYour Club Management System");
+            mailMessage.setSubject("Club Creation Confirmation");
+
+            javaMailSender.send(mailMessage);
+        }
+
         return "redirect:/clubs";
     }
+
 
     @GetMapping("/clubs/{clubId}/edit")
     public String editClubForm(@PathVariable("clubId") Long clubId, Model model) {

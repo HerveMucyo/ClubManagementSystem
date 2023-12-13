@@ -8,6 +8,9 @@ import com.ClubManagementSystem.web.service.ClubService;
 import com.ClubManagementSystem.web.service.EventService;
 import com.ClubManagementSystem.web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,6 +28,11 @@ public class EventController {
     private EventService eventService;
     private UserService userService;
     private ClubService clubService;
+    @Autowired
+    JavaMailSender javaMailSender;
+
+    @Value("${spring.mail.username}")
+    String sender;
 
     @Autowired
     public EventController(EventService eventService, UserService userService) {
@@ -85,8 +93,29 @@ public class EventController {
             return "clubs-create";
         }
         eventService.createEvent(clubId, eventDto);
+
+        String username = SecurityUtil.getSessionUser();
+        if(username != null) {
+            UserEntity user = userService.findByUsername(username);
+
+            // Sending email notification
+            sendEventCreationEmail(user);
+        }
+
         return "redirect:/clubs/" + clubId;
     }
+
+    // Method to send email notification for event creation
+    private void sendEventCreationEmail(UserEntity user) {
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setFrom(sender); // Set your email here
+        mailMessage.setTo(user.getEmail());
+        mailMessage.setText("Hello " + user.getUsername() + ",\n\nThank you for creating an event!\n\nBest regards,\nYour Club Management System");
+        mailMessage.setSubject("Event Creation Confirmation");
+
+        javaMailSender.send(mailMessage);
+    }
+
 
     @PostMapping("/events/{eventId}/edit")
     public String updateEvent(@PathVariable("eventId") Long eventId,

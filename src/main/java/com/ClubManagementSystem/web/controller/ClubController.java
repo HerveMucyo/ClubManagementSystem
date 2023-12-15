@@ -76,12 +76,16 @@ public class ClubController {
     }
 
     @GetMapping("/clubs/search")
-    public String searchClub(@RequestParam(value = "query") String query, Model model) {
-        List<ClubDto> clubs = clubService.searchClubs(query);
+    public String searchClubs(@RequestParam(value = "query") String query, Model model) {
+        List<ClubDto> clubs;
+        if (query != null && !query.isEmpty()) {
+            clubs = clubService.searchClubs(query);
+        } else {
+            clubs = clubService.findAllClubs();
+        }
         model.addAttribute("clubs", clubs);
         return "clubs-list";
     }
-
     @PostMapping("/clubs/new")
     public String saveClub(@Valid @ModelAttribute("club") ClubDto clubDto, BindingResult result, Model model) {
         if(result.hasErrors()) {

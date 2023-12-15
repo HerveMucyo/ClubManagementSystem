@@ -1,10 +1,6 @@
-FROM ubuntu:latest
-FROM maven:3.8-openjdk-17
-LABEL authors="Herve"
-
-RUN mvn clean package -DskipTests
-
-FROM openjdk:17
-COPY --from=build /target/web-0.0.1-SNAPSHOT.jar web.jar
+FROM openjdk:17-alpine
+WORKDIR /app
+COPY . .
+RUN mvn package
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","web.jar"]
+CMD ["java", "-jar", "web-0.0.1-SNAPSHOT.jar"]

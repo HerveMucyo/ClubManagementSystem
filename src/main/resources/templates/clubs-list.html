@@ -22,6 +22,12 @@
                         <input name="query" class="form-control mr-sm-2 mb-5" type="search" placeholder="Search running clubs" aria-label="Search">
                     </form>
                 </div>
+                <select name="filter" class="form-select mb-5" aria-label="Filter by">
+                    <option value="" selected>Filter by</option>
+                    <option value="category">Category</option>
+                    <option value="location">Location</option>
+                    <!-- Add more options as needed for other filters -->
+                </select>
                 <div th:each="club :${clubs}" class="col-lg-6 mb-2">
                     <div class="position-relative mb-3">
                         <img class="img-fluid rounded-3 mb-3" th:src="${club.photoUrl}" alt="..." />

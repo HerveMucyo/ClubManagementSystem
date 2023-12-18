@@ -82,16 +82,26 @@ Before installing and using the Club Management System, make sure you have the f
 ## Screenshots
 
 - Registration Page
-  ![Registration Page](insert_image_link_here)
+  ![Registration Page](https://github.com/NKUBITOYIMANZI/ClubManagementSystem/blob/master/src/main/resources/static/assets/registrationPage.png)
 
 - Login Page
-  ![Login Page](insert_image_link_here)
+  ![Login Page](https://github.com/NKUBITOYIMANZI/ClubManagementSystem/blob/master/src/main/resources/static/assets/loginPage.png)
 
-- Club Management Page
-  ![Club Management Page](insert_image_link_here)
+- Create Club
+  ![Create club Page](https://github.com/NKUBITOYIMANZI/ClubManagementSystem/blob/master/src/main/resources/static/assets/clubs-create.png)
 
-- Event Page
-  ![Event Page](insert_image_link_here)
+- List Club Page
+  ![Club Management Page](https://github.com/NKUBITOYIMANZI/ClubManagementSystem/blob/master/src/main/resources/static/assets/clubs-list.png)
+
+- Create Events Page
+  ![Create Events Page](https://github.com/NKUBITOYIMANZI/ClubManagementSystem/blob/master/src/main/resources/static/assets/create-events.png)
+
+
+- List Events Page
+  ![List Event Page](https://github.com/NKUBITOYIMANZI/ClubManagementSystem/blob/master/src/main/resources/static/assets/list-events.png)
 
 
 We hope you find the Club Management System useful for organizing and managing your clubs and events. If you have any questions or need assistance, feel free to contact us. Happy club management!
+
+Email: mucyoh32@gmail.com
+Phone: +250785680176

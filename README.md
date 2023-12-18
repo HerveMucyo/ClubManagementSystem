@@ -1,6 +1,97 @@
-Club Management System
 
-The Club Management System is a comprehensive platform built using Spring MVC, designed to streamline the administration of clubs and events. 
-This application offers robust functionalities for managing diverse club activities, membership, event scheduling, and coordination.
-Seamlessly organized, it simplifies the complexities of overseeing multiple clubs and their events, facilitating efficient planning and execution. 
-The system aims to enhance the management experience for administrators, enabling smoother operations and fostering better engagement within clubs.
+# Club Management System
+
+Welcome to the Club Management System, a web application designed to streamline the management of clubs and organizations. This system provides features for members to register, organize events, and collaborate effectively. Follow the instructions below to set up and use the Club Management System.
+
+## Table of Contents
+
+1. [Features](#features)
+2. [Prerequisites](#prerequisites)
+3. [Installation](#installation)
+4. [Configuration](#configuration)
+5. [Usage](#usage)
+6. [Screenshots](#screenshots)
+7. [Contributing](#contributing)
+8. [License](#license)
+
+## Features
+
+- User registration and authentication
+- Create and manage clubs or organizations
+- Schedule and promote events
+- User-friendly interface
+
+## Prerequisites
+
+Before installing and using the Club Management System, make sure you have the following prerequisites:
+
+- Java Development Kit (JDK) 17
+- Apache Maven
+- PostgreSQL (installed and running)
+
+## Installation
+
+1. Clone the repository to your local machine using the following command:
+
+   ```bash
+   git clone https://github.com/NKUBITOYIMANZI/ClubManagementSystem.git
+   ```
+
+2. Change into the project directory:
+
+   ```bash
+   cd ClubManagementSystem
+   ```
+
+3. Build the application using Maven:
+
+   ```bash
+   mvn clean package
+   ```
+
+4. Run the application using the following command:
+
+   ```bash
+   java -jar target/ClubManagementSystem-1.0.0.jar
+   ```
+
+## Configuration
+
+1. Create a PostgreSQL database for the Club Management System.
+
+2. Open the application.properties file located in the src/main/resources directory.
+
+3. Configure the following properties in the application.properties file:
+
+   ```bash
+   spring.datasource.url=jdbc:postgresql://localhost:5432/postgres
+   spring.datasource.username=postgres
+   spring.datasource.password=123
+   ```
+
+## Usage
+
+1. Open your web browser and navigate to http://localhost:8080.
+
+2. Register a new user account by clicking on the "Register" button and providing the required information.
+
+3. Log in using your registered credentials.
+
+4. Create and manage clubs, schedule events, and collaborate with other members.
+
+## Screenshots
+
+- Registration Page
+  ![Registration Page](insert_image_link_here)
+
+- Login Page
+  ![Login Page](insert_image_link_here)
+
+- Club Management Page
+  ![Club Management Page](insert_image_link_here)
+
+- Event Page
+  ![Event Page](insert_image_link_here)
+
+
+We hope you find the Club Management System useful for organizing and managing your clubs and events. If you have any questions or need assistance, feel free to contact us. Happy club management!

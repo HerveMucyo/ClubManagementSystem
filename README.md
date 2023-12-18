@@ -11,8 +11,6 @@ Welcome to the Club Management System, a web application designed to streamline 
 4. [Configuration](#configuration)
 5. [Usage](#usage)
 6. [Screenshots](#screenshots)
-7. [Contributing](#contributing)
-8. [License](#license)
 
 ## Features
 

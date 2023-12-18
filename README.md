@@ -28,6 +28,7 @@ Before installing and using the Club Management System, make sure you have the f
 - Java Development Kit (JDK) 17
 - Apache Maven
 - PostgreSQL (installed and running)
+- Postman
 
 ## Installation
 

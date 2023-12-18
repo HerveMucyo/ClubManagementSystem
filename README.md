@@ -71,7 +71,7 @@ Before installing and using the Club Management System, make sure you have the f
 
 ## Usage
 
-1. Open your web browser and navigate to http://localhost:8080.
+1. Open your web browser and navigate to http://localhost:8080/clubs
 
 2. Register a new user account by clicking on the "Register" button and providing the required information.
 
